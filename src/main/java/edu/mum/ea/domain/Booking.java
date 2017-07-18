@@ -40,9 +40,6 @@ public class Booking implements Serializable {
 
 
 
-
-
-
     public Long getId() {
         return id;
     }
@@ -98,4 +95,7 @@ public class Booking implements Serializable {
     public void setBookBy(User bookBy) {
         this.bookBy = bookBy;
     }
+
+
+
 }

@@ -8,4 +8,5 @@ import edu.mum.ea.domain.Booking;
 public interface BookingService {
 
     public Booking findById(Long id);
+    public void save(Booking booking);
 }

@@ -4,10 +4,15 @@ import edu.mum.ea.dao.BookingDao;
 import edu.mum.ea.domain.Booking;
 import edu.mum.ea.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by darith on 7/18/17.
  */
+
+@Service
+@Transactional
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
@@ -15,5 +20,9 @@ public class BookingServiceImpl implements BookingService {
 
     public Booking findById(Long id) {
         return bookingDao.findOne(id);
+    }
+
+    public void save(Booking booking) {
+        bookingDao.save(booking);
     }
 }

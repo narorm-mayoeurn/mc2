@@ -32,9 +32,38 @@ public class Room implements Serializable {
 
 
     @Column(name = "price", nullable = false)
+
     private Double price;
 
 
+    @Column(name = "image")
+    private String image;
+
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 
 

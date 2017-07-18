@@ -32,7 +32,7 @@ public class UserCredentialsServiceImpl implements UserCredentialsService {
 	}
 
 
-	@Override
+
 	public UserCredentials update(UserCredentials userCredentials) {
 		return userCredentialsDao.update(userCredentials);
 	
