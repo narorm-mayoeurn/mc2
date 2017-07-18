@@ -10,6 +10,8 @@
 
     <mvc:annotation-driven validator="validator"/>
 
+
+
     <context:component-scan base-package="edu.mum.ea.controller" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

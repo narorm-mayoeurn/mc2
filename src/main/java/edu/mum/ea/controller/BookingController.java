@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BookingController {
 
-    @RequestMapping("/")
-    public String show() {
 
-        return "home";
+    @RequestMapping("/accommodation/list")
+    public String showRoomList() {
+        return "room-list";
     }
+
 }

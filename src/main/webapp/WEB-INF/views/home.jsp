@@ -114,7 +114,7 @@
         <h2>CHECK AVAILABILITY</h2>
     </div>
     <div class="col-md-9 book-form">
-        <form action="#" method="post">
+        <form action="<c:url value="/accommodation/list" />" method="get">
             <div class="fields-w3ls form-left-agileits-w3layouts ">
                 <p>Room Type</p>
                 <select class="form-control">
@@ -127,11 +127,11 @@
             </div>
             <div class="fields-w3ls form-date-w3-agileits">
                 <p>Arrival Date</p>
-                <input  id="datepicker1" name="Text" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+                <input  id="datepicker1" name="startDate" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
             </div>
             <div class="fields-w3ls form-date-w3-agileits">
                 <p>Departure Date</p>
-                <input  id="datepicker2" name="Text" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+                <input  id="datepicker2" name="endDate" type="text" value="Select Date" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
             </div>
 
             <div class=" form-left-agileits-submit">

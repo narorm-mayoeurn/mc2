@@ -38,7 +38,7 @@ public class Accommodation implements Serializable {
     @JoinColumn(name = "accommodation_id")
     private List<Address> addresses;
 
-    @OneToMany(mappedBy = "accommodation")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "accommodation")
     private List<Room> rooms;
 
 
