@@ -1,18 +1,24 @@
 package edu.mum.ea.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * Created by darith on 7/17/17.
  */
 
-@Entity(name = "credientials")
-public class UserCredential implements Serializable {
+@SuppressWarnings("serial")
+@Entity(name = "Authentication")
+public class UserCredentials implements Serializable {
 
     @Id
     @Column(name = "username", length = 40, nullable = false, unique = true)
-    private String username;
+    private String userName;
 
     @Column(name = "password", length = 255, nullable = false)
     private String password;
@@ -20,12 +26,12 @@ public class UserCredential implements Serializable {
     @OneToOne(mappedBy = "userCredential", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getPassword() {
