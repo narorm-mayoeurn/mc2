@@ -8,6 +8,7 @@ import java.util.List;
  * Created by nm on 17/7/17.
  */
 
+@SuppressWarnings("serial")
 @Entity(name = "users")
 public class User implements Serializable {
 
@@ -30,17 +31,7 @@ public class User implements Serializable {
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "username")
-    private UserCredential userCredential;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "users_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    private List<Role> roles;
-
-
-
-
-
-
+    private UserCredentials userCredentials;
 
     public Long getId() {
         return id;
@@ -82,11 +73,11 @@ public class User implements Serializable {
         this.version = version;
     }
 
-    public UserCredential getUserCredential() {
-        return userCredential;
+    public UserCredentials getUserCredential() {
+        return userCredentials;
     }
 
-    public void setUserCredential(UserCredential userCredential) {
-        this.userCredential = userCredential;
+    public void setUserCredential(UserCredentials userCredentials) {
+        this.userCredentials = userCredentials;
     }
 }

@@ -25,6 +25,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/postLogin", method = RequestMethod.POST)
 	public String PostLogin(UserCredentials credentials, Model model) {
+		System.out.println("aaa");
 
 		UserCredentials validCredentials;
 		try {

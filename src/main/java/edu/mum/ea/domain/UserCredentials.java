@@ -23,7 +23,7 @@ public class UserCredentials implements Serializable {
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "userCredential", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(mappedBy = "userCredentials", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     public String getUserName() {

@@ -2,7 +2,8 @@ INSERT INTO `authentication` (`username`, `password`)
 VALUES
 	('jack', 'jack'),
 	('jame', 'jame');
-INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `version`, `username`)
+INSERT INTO `users` (`email`, `first_name`, `last_name`, `version`, `username`)
+VALUES ('jack@mc2.org', 'Jack', 'Jon', 1, 'jack');
 
 INSERT INTO `authority` (`authority`, `username`)
 VALUES ('ROLE_ADMIN', 'admin'),('ROLE_USER', 'user');
