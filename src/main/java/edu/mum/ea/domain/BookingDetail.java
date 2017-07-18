@@ -19,12 +19,12 @@ public class BookingDetail {
     private Double price;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
-
-    @Column(name = "room_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "room_id")
     private Room room;
 
 
