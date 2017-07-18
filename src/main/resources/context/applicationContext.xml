@@ -27,7 +27,7 @@
         <property name="password" value="${jdbc.password}" />
     </bean>
 
-    <import resource="classpath:context/securityContext.xml"/>
+    <import resource="classpath:context/security-context.xml"/>
     <import resource="classpath:context/DispatcherServlet-context.xml"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

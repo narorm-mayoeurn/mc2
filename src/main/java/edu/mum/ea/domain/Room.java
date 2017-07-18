@@ -18,6 +18,12 @@ public class Room implements Serializable {
     private String roomNumber;
 
 
+    @Column(name = "type", nullable = false, length = 20)
+    private String type;
+
+
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "accommodation_id", nullable = false)
     private Accommodation accommodation;
 
