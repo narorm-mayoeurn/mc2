@@ -18,10 +18,13 @@ public class BookingDetail {
     @Column(name = "price")
     private Double price;
 
-    @JoinColumn(name = "booking_id")
+
+    @JoinColumn
+    @Column(name = "booking_id")
     private Booking booking;
 
-    @JoinColumn(name = "room_id")
+    @JoinColumn
+    @Column(name = "room_id")
     private Room room;
 
 

@@ -6,6 +6,8 @@ import java.io.Serializable;
 /**
  * Created by darith on 7/17/17.
  */
+
+@Entity(name = "rooms")
 public class Room implements Serializable {
 
     @Id
@@ -14,6 +16,7 @@ public class Room implements Serializable {
 
     @Column(name = "room_number", nullable = false)
     private String roomNumber;
+
 
     @JoinColumn(name = "accommodation_id", nullable = false)
     private Accommodation accommodation;

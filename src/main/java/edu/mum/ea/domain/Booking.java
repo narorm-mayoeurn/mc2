@@ -31,7 +31,7 @@ public class Booking implements Serializable {
     @Column(name = "end_date", nullable = false)
     private Date endDate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "booking")
     private List<BookingDetail> bookingDetails;
 
     @Column(name = "archived")
