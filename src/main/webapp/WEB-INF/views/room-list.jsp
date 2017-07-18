@@ -59,7 +59,7 @@
                         </div>
                         <div class="price-selet">
                             <h3><span>$</span>320</h3>
-                            <a href="#availability-agileits" class="scroll" >Book Now</a>
+                            <a href="<c:url value="/booking/1" />" class="scroll" >Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="price-selet">
                             <h3><span>$</span>220</h3>
-                            <a href="#availability-agileits" class="scroll" >Book Now</a>
+                            <a href="<c:url value="/booking/2" />" class="scroll" >Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="price-selet">
                             <h3><span>$</span>180</h3>
-                            <a href="#availability-agileits" class="scroll" >Book Now</a>
+                            <a href="<c:url value="/booking/3" />" class="scroll" >Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="price-selet">
                             <h3><span>$</span> 150</h3>
-                            <a href="#availability-agileits" class="scroll" >Book Now</a>
+                            <a href="<c:url value="/booking/4" />" class="scroll" >Book Now</a>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<c:url value="/resource/js/jquery-2.1.4.min.js" />"></script>
 <!-- contact form -->
 <script src="<c:url value="/resource/js/jqBootstrapValidation.js" />"></script>
-<script src="<c:url value="/resource/js/contact_me.js" />"></script>
+<%--<script src="<c:url value="/resource/js/contact_me.js" />"></script>--%>
 <!-- /contact form -->
 <!-- Calendar -->
 <script src="<c:url value="/resource/js/jquery-ui.js" />"></script>
@@ -17,7 +17,7 @@
 </script>
 <!-- //Calendar -->
 <!-- gallery popup -->
-<link rel="stylesheet" href="/resource/css/swipebox.css">
+<link rel="stylesheet" href="<u:url value="/resource/css/swipebox.css" />">
 <script src="<c:url value="/resource/js/jquery.swipebox.min.js" />"></script>
 <script type="text/javascript">
     jQuery(function($) {
