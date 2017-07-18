@@ -13,6 +13,6 @@ public class BookingController {
     @RequestMapping("/")
     public String show() {
 
-        return "index";
+        return "home";
     }
 }
