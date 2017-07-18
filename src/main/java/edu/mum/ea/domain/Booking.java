@@ -16,12 +16,19 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "booking_date")
+    private Date bookingDate;
+
+    @JoinColumn(name = "user_id", nullable = false)
+    private User bookBy;
+
     @Temporal(TemporalType.DATE)
-    @Column(name = "start_date")
+    @Column(name = "start_date", nullable = false)
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private Date endDate;
 
     @OneToMany
@@ -74,5 +81,21 @@ public class Booking implements Serializable {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public User getBookBy() {
+        return bookBy;
+    }
+
+    public void setBookBy(User bookBy) {
+        this.bookBy = bookBy;
     }
 }
