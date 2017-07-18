@@ -18,7 +18,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 			daoType = type;
 	}
    
-    @Override
+
     public void save( T entity ){
         entityManager.persist( entity );
      }
@@ -27,30 +27,29 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
         entityManager.remove( entity );
      }
 
-	@Override
+
 	public void delete(Long id) {
         T entity = findOne( id );
         delete( entity );  
     }
 
-	@Override
+
 	public T findOne( Long id ){
 	    return (T) entityManager.find( daoType, id );
 	 }
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<T> findAll(){
 		      return entityManager.createQuery( "from " + daoType.getName() )
 		       .getResultList();
 		   }
 	
-	@Override
+
 	public T update( T entity ){
 	      return entityManager.merge( entity );
 	   }
 
- 	@Override
+
 	public List<T> findAll(String s,Object  hint ){
  	    return (List<T>)  entityManager.createQuery("SELECT m FROM Member AS m") 
  	    		.setHint(s,hint).getResultList();

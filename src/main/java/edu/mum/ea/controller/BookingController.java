@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BookingController {
 
 
+
     @RequestMapping("/accommodation/list")
     public String roomListView() {
 
