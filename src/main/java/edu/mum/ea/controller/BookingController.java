@@ -1,6 +1,8 @@
 package edu.mum.ea.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,8 +14,16 @@ public class BookingController {
 
 
     @RequestMapping("/accommodation/list")
-    public String showRoomList() {
+    public String roomListView() {
+
         return "room-list";
+    }
+
+    @RequestMapping("/booking/{id}")
+    public String bookingFormView(Model model, @PathVariable Integer id) {
+
+
+        return "booking-form";
     }
 
 }
