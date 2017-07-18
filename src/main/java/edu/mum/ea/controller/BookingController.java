@@ -23,6 +23,8 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+
+
     @RequestMapping("/accommodation/list")
     public String roomListView() {
 
@@ -88,7 +90,18 @@ public class BookingController {
         BookingDetail bookingDetail = new BookingDetail();
         bookingDetail.setRoom(room);
 
-        bookingDetail.setBooking(booking);
+
+        User user = new User();
+        user.setId(1L);
+        user.setEmail("abc@abc.com");
+        user.setFirstName("Jack");
+        user.setLastName("Jon");
+        user.setVersion(1L);
+
+        booking.setBookBy(user);
+
+
+
 
         booking.setBookingDetails(Arrays.asList(bookingDetail));
 
