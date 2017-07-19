@@ -8,10 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
@@ -22,7 +19,7 @@ public class LoginController {
 	AuthenticationManager authenticationManager;
 
 	@RequestMapping(value = "/postLogin", method = RequestMethod.POST)
-	public String PostLogin(@RequestParam String userName, @RequestParam String password,  Model model) {
+	public @ResponseBody String PostLogin(@RequestParam String userName, @RequestParam String password, Model model) {
 		
 		try {
 			Authentication req = new UsernamePasswordAuthenticationToken(userName, password);
@@ -30,7 +27,7 @@ public class LoginController {
 			SecurityContextHolder.getContext().setAuthentication(res);
 		} catch (AuthenticationException e) {
 			model.addAttribute("error", "true");
-			return "home";
+			return "error";
 		}
 		model.addAttribute("user", userName);
 		return "redirect:/booking-form";

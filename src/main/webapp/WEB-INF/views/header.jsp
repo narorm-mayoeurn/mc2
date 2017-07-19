@@ -25,6 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="<c:url value="/resource/css/jquery-ui.css" />" />
     <link href="<c:url value="/resource/css/style.css" />" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="<c:url value="/resource/js/modernizr-2.6.2.min.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/resource/js/jquery-2.1.4.min.js" />"></script>
     <!--fonts-->
     <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
