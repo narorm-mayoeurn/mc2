@@ -33,14 +33,14 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label class="contact-p1">Arrival Date:</label>
-                            <input type="text" class="form-control" name="startDate" id="startDate" required data-validation-required-message="Please enter your arrival date.">
+                            <input type="text" class="form-control datepicker" name="startDate" id="startDate" required data-validation-required-message="Please enter your arrival date.">
                             <p class="help-block"></p>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label class="contact-p1">Departure Date:</label>
-                            <input path="endDate" class="form-control" name="endDate" id="endDate" required data-validation-required-message="Please enter your departure date.">
+                            <input path="endDate" class="form-control datepicker" name="endDate" id="endDate" required data-validation-required-message="Please enter your departure date.">
                             <p class="help-block"></p>
                         </div>
                     </div>

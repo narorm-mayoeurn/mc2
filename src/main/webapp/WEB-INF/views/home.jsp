@@ -106,7 +106,7 @@
 
 						<div id="success"></div>
 						<!-- For success/fail messages -->
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="button" class="btn btn-primary" id="btLogin">Submit</button>
 					</form>
 				</div>
 
@@ -156,6 +156,26 @@
 </div>
 
 
+<script>
+	$(function() {
+		$('#btLogin').on('click', function() {
+            $.ajax({
+				method: 'POST',
+                url: '<c:url value="/postLogin" />',
+                data: {
+                    userName: $('#userName').val(),
+                    password: $('#password').val()
+                },
+                success: function () {
+                    $('#success').text('success');
+                },
+				error: function(r) {
+					console.log(r);
+				}
+            });
+		});
+	});
+</script>
 
 
 

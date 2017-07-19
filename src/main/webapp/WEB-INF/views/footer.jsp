@@ -3,7 +3,7 @@
 </div>
 <!--/footer -->
 <!-- js -->
-<script type="text/javascript" src="<c:url value="/resource/js/jquery-2.1.4.min.js" />"></script>
+
 <!-- contact form -->
 <script src="<c:url value="/resource/js/jqBootstrapValidation.js" />"></script>
 <%--<script src="<c:url value="/resource/js/contact_me.js" />"></script>--%>
@@ -12,7 +12,7 @@
 <script src="<c:url value="/resource/js/jquery-ui.js" />"></script>
 <script>
     $(function() {
-        $( "#datepicker,#datepicker1,#datepicker2,#datepicker3" ).datepicker();
+        $( "#datepicker,#datepicker1,#datepicker2,#datepicker3, .datepicker" ).datepicker();
     });
 </script>
 <!-- //Calendar -->
