@@ -1,6 +1,7 @@
 package edu.mum.ea.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -55,6 +56,8 @@ public class AccommodationController {
 		}
 
 		try {
+			int randomNum = new Random().nextInt((10 - 1) + 1) + 1;
+			accommodationToBeAdded.setImage(String.format("g%d.jpg", randomNum));
 			accommodationService.save(accommodationToBeAdded);
 		} catch (Exception up) {
 			System.out.println("Transaction Failed!!!" + up.getMessage());
@@ -125,6 +128,9 @@ public class AccommodationController {
 		}
 
 		try {
+			int randomNum = new Random().nextInt((4 - 1) + 1) + 1;
+			roomToBeAdded.setImage(String.format("r%d.jpg", randomNum));
+			
 			Accommodation accommodation = accommodationService.findOne(accommodationId);
 			roomToBeAdded.setAccommodation(accommodation);
 			accommodation.setRooms(roomToBeAdded);
