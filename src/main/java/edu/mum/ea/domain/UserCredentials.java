@@ -23,7 +23,18 @@ public class UserCredentials implements Serializable {
     @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "userCredentials", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@OneToOne(mappedBy = "userCredentials", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     public String getUserName() {
