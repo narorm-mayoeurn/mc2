@@ -23,7 +23,7 @@ public class BookingDetail {
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "room_id")
     private Room room;
 

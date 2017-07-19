@@ -20,7 +20,7 @@ public class Booking implements Serializable {
     @Column(name = "booking_date")
     private Date bookingDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User bookBy;
 
@@ -32,7 +32,8 @@ public class Booking implements Serializable {
     @Column(name = "end_date", nullable = false)
     private Date endDate;
 
-    @OneToMany(mappedBy = "booking", cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "booking_id")
     private List<BookingDetail> bookingDetails;
 
     @Column(name = "archived")

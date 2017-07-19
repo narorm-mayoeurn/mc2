@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by darith on 7/17/17.
@@ -93,10 +94,22 @@ public class BookingController {
 
         User user = new User();
         user.setId(1L);
-        user.setEmail("abc@abc.com");
+        user.setEmail("jack@mc2.org");
         user.setFirstName("Jack");
         user.setLastName("Jon");
         user.setVersion(1L);
+
+
+
+        UserCredentials userCredentials = new UserCredentials();
+
+        userCredentials.setUsername("jack");
+        userCredentials.setPassword("jack");
+
+
+        user.setUserCredential(userCredentials);
+
+
 
         booking.setBookBy(user);
 
@@ -110,6 +123,8 @@ public class BookingController {
 
         }
 
+        booking.setBookingDate(new Date());
+        booking.setId(null);
         bookingService.save(booking);
 
         return "booking-form";
