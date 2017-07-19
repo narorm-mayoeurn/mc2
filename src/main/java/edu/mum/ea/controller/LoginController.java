@@ -8,7 +8,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
@@ -25,6 +29,7 @@ public class LoginController {
 			Authentication req = new UsernamePasswordAuthenticationToken(userName, password);
 			Authentication res = authenticationManager.authenticate(req);
 			SecurityContextHolder.getContext().setAuthentication(res);
+			System.out.println(SecurityContextHolder.getContext().getAuthentication().toString());
 		} catch (AuthenticationException e) {
 			model.addAttribute("error", "true");
 			return "error";

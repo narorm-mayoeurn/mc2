@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,13 +29,17 @@ public class AccommodationController {
 
 	@RequestMapping({ "/", "/all" })
 	public String list(Model model) {
-		List<Accommodation> accommodations = accommodationService.findAll();
-		for (Accommodation item : accommodations) {
-			if (!item.getAddresses().isEmpty() && !item.getRooms().isEmpty())
-				item.setValid(true);
+		try {
+			List<Accommodation> accommodations = accommodationService.findAll();
+			for (Accommodation item : accommodations) {
+				if (!item.getAddresses().isEmpty() && !item.getRooms().isEmpty())
+					item.setValid(true);
+			}
+			model.addAttribute("accommodations", accommodations);
+			return "accommodationList";
+		} catch (Exception e) {
+			return "home";
 		}
-		model.addAttribute("accommodations", accommodations);
-		return "accommodationList";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

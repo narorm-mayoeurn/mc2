@@ -3,6 +3,7 @@ package edu.mum.ea.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ public class AccommodationServiceImpl implements edu.mum.ea.service.Accommodatio
 		accommodationDao.update(accommodation);
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public List<Accommodation> findAll() {
 		return (List<Accommodation>) accommodationDao.findAll();
 	}

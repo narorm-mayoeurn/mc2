@@ -62,6 +62,9 @@
 
     <!-- Enable annotation driven for transaction -->
     <tx:annotation-driven transaction-manager="transactionManager"  />
+ 
+   <bean id="persistenceExceptionTranslationPostProcessor"
+      class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 
     <!-- Bean validation -->

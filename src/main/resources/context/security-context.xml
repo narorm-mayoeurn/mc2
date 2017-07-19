@@ -13,11 +13,23 @@
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>
 			<security:password-encoder hash="plaintext" />
-			<security:jdbc-user-service data-source-ref="dataSource"
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
 				users-by-username-query="select username,password,enabled from authentication where username=?"
 				authorities-by-username-query="select u1.username, u2.authority
-								from authentication u1, authority u2 where u1.username=u2.username and u1.username=?"/>
+								from authentication u1, authority u2 where u1.username=u2.username and u1.username=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<constructor-arg>
+			<list>
+				<security:filter-chain pattern="/**"
+					filters="securityContextPersistenceFilter" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
 
 </beans>
