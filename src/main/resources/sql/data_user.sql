@@ -10,12 +10,12 @@ VALUES ('ROLE_ADMIN', 'jack'),('ROLE_USER', 'jack');
 
 INSERT INTO `accommodations` (`id`, `email`, `image`, `logo`, `name`, `phone`, `type`)
 VALUES
-	(1, 'info@resort-inn.com', 'g1.jpg', NULL, 'Resort Inn', '(954) 345 1244', 'Hotel'),
-	(2, 'contact@queen-motel.com', 'g2.jpg', NULL, 'Queen', '(940) 554 1177', 'Motel'),
-	(3, 'contact@Mc1970.com', 'g3.jpg', NULL, 'Mc1970', '(650) 764 8875', 'Motel'),
-	(4, 'info@Ace-hotel.com', 'g4.jpg', NULL, 'Ace Hotel', '(450) 345 7754', 'Hotel'),
-	(5, 'double@doubletree.com', 'g5.jpg', NULL, 'Double Tree Hotel', '(780) 456 2345', 'Hotel'),
-	(6, 'contact@grandhyatt.com', 'g6.jpg', NULL, 'Grand Hyatt Hotel', '(970) 335 6664', 'Hotel');
+	(1, 'info@resort-inn.com', 'g1.jpg', NULL, 'Resort Inn', '9543451244', 'Hotel'),
+	(2, 'contact@queen-motel.com', 'g2.jpg', NULL, 'Queen', '9405541177', 'Motel'),
+	(3, 'contact@Mc1970.com', 'g3.jpg', NULL, 'Mc1970', '6507648875', 'Motel'),
+	(4, 'info@Ace-hotel.com', 'g4.jpg', NULL, 'Ace Hotel', '4503457754', 'Hotel'),
+	(5, 'double@doubletree.com', 'g5.jpg', NULL, 'Double Tree Hotel', '7804562345', 'Hotel'),
+	(6, 'contact@grandhyatt.com', 'g6.jpg', NULL, 'Grand Hyatt Hotel', '9703356664', 'Hotel');
 
 
 

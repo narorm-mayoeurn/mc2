@@ -9,51 +9,59 @@ import java.io.Serializable;
 @Entity(name = "addresses")
 public class Address implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(name = "state", length = 40)
-    private String state;
+	@Column(name = "state", length = 40)
+	private String state;
 
-    @Column(name = "city", length = 40)
-    private String city;
+	@Column(name = "city", length = 40)
+	private String city;
 
-    @Column(name = "street", length = 100)
-    private String street;
+	@Column(name = "street", length = 100)
+	private String street;
 
+	@Column(name = "zipcode", length = 5)
+	private String zipcode;
 
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-    public String getState() {
-        return state;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setState(String state) {
-        this.state = state;
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public String getStreet() {
+		return street;
+	}
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-    public String getStreet() {
-        return street;
-    }
+	public String getZipcode() {
+		return zipcode;
+	}
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
 }
