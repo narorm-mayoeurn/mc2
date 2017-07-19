@@ -3256,3 +3256,7 @@ color: #fff !important;
 .bg-blue {
     background-color: #0f2453 !important;
 }
+
+.price-grid {
+    margin-bottom:25px;
+}

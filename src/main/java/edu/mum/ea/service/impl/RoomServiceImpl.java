@@ -1,5 +1,6 @@
 package edu.mum.ea.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class RoomServiceImpl implements edu.mum.ea.service.RoomService {
 
 	public Room findById(Long id) {
 		return roomDao.findById(id);
+	}
+
+	public List<Room> findAllAvailable(String roomType, Date startDate, Date endDate) {
+		return roomDao.findAllAvailable(roomType, startDate, endDate);
 	}
 }

@@ -2,17 +2,16 @@ package edu.mum.ea.controller;
 
 import edu.mum.ea.domain.*;
 import edu.mum.ea.service.BookingService;
+import edu.mum.ea.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by darith on 7/17/17.
@@ -24,41 +23,64 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    @Autowired
+    private RoomService roomService;
+
 
 
     @RequestMapping("/accommodation/list")
-    public String roomListView() {
+    public String roomListView(Model model, @RequestParam("roomType") String roomType, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+
+        Date start = null;
+        Date end = null;
+
+        if(startDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            start = new Date(startDate);
+        }
+
+        if(endDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+             end = new Date(endDate);
+        }
+
+
+        List<Room> rooms = roomService.findAllAvailable(roomType, start, end);
+
+        model.addAttribute("rooms", rooms);
 
         return "room-list";
     }
 
     @RequestMapping("/booking/{roomId}")
-    public String bookingFormView(Model model, @PathVariable Integer roomId) {
+    public String bookingFormView(Model model, @PathVariable Long roomId) {
 
-        Accommodation accommodation = new Accommodation();
-        accommodation.setId(1L);
-        accommodation.setEmail("abc@gmail.com");
-        accommodation.setName("Ace Hotel");
 
-        Address address = new Address();
-        address.setCity("Fairfield");
-        address.setId(1L);
-        address.setState("IA");
-        address.setStreet("1000N");
+        Room room = roomService.findById(roomId);
 
-        Room room = new Room();
-        room.setId(1L);
-        room.setAvailable(true);
-        room.setRoomNumber("199");
-        room.setAccommodation(accommodation);
-        room.setImage("r1.jpg");
 
-        accommodation.setAddresses(Arrays.asList(address));
-        accommodation.setRooms(Arrays.asList(room));
+//        Accommodation accommodation = new Accommodation();
+//        accommodation.setId(1L);
+//        accommodation.setEmail("abc@gmail.com");
+//        accommodation.setName("Ace Hotel");
+//
+//        Address address = new Address();
+//        address.setCity("Fairfield");
+//        address.setId(1L);
+//        address.setState("IA");
+//        address.setStreet("1000N");
+//
+//        Room room = new Room();
+//        room.setId(1L);
+//        room.setAvailable(true);
+//        room.setRoomNumber("199");
+//        room.setAccommodation(accommodation);
+//        room.setImage("r1.jpg");
+//
+//        accommodation.setAddresses(Arrays.asList(address));
+//        accommodation.setRooms(Arrays.asList(room));
 
         model.addAttribute("roomId", roomId);
 
-        model.addAttribute("accommodation", accommodation);
+        model.addAttribute("room", room);
 
         return "booking-form";
     }

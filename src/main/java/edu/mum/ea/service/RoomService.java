@@ -1,5 +1,6 @@
 package edu.mum.ea.service;
 
+import java.util.Date;
 import java.util.List;
 
 import edu.mum.ea.domain.Room;
@@ -15,4 +16,6 @@ public interface RoomService {
 	public Room findOne(Long id);
 
 	public Room findById(Long id);
+
+	public List<Room> findAllAvailable(String roomType, Date startDate, Date endDate);
 }
