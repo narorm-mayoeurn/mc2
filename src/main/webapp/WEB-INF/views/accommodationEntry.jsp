@@ -64,7 +64,7 @@
 					<div class="col-lg-10">
 						<form:select path="type">
 							<form:option value="Hotel">Hotel</form:option>
-							<form:option value="Other">Other</form:option>
+							<form:option value="Other">Motel</form:option>
 						</form:select>
 					</div>
 				</div>

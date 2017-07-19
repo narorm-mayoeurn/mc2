@@ -28,7 +28,7 @@ public class Room implements Serializable {
 	private String type;
 
 	@Column(name = "is_available", nullable = false)
-	private boolean isAvailable = false;
+	private boolean isAvailable = true;
 
 	@NotNull
 	@Column(name = "price", nullable = false)

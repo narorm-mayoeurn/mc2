@@ -1,3 +1,0 @@
-INSERT INTO accommodations(email, image, logo, name, phone, type) VALUES ('sergelen.ikhbayar@gmail.com', '/resource/images/403-forbidden-error.jpg', '/resource/images/logo.jpg', 'Fairfield Prime', '9254872864', 'Hotel')
-INSERT INTO addresses(city, state, street, zipcode, accommodation_id) VALUES('Fairfield', 'Iowa', '1000N', '52557', 1)
-INSERT INTO rooms(is_available, type, price, room_number, accommodation_id) VALUES(1, 'luxury', '10', '1', 1);

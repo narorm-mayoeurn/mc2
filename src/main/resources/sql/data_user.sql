@@ -33,13 +33,13 @@ VALUES
 
 
 
-INSERT INTO `rooms` (`id`, `is_available`, `price`, `room_number`, `type`, `accommodation_id`)
+INSERT INTO `rooms` (`id`, `is_available`, `price`, `room_number`, `type`, `accommodation_id`, image)
 VALUES
-	(1, 1, 80, '101', 'Single', 1),
-	(2, 1, 150, '102', 'Double', 1),
-	(3, 1, 30, '200', 'Single', 2),
-	(4, 1, 40, '201', 'Twin', 2),
-	(5, 1, 90, '150', 'Single', 3),
-	(6, 1, 100, '151', 'Deluxe', 3),
-	(7, 1, 200, '119', 'Luxury', 4),
-	(8, 1, 150, '118', 'Twin', 4);
+	(1, 1, 80, '101', 'Single Room', 1, 'r1.jpg'),
+	(2, 1, 150, '102', 'Deluxe Room', 1, 'r2.jpg'),
+	(3, 1, 30, '200', 'Single Room', 2, 'r3.jpg'),
+	(4, 1, 40, '201', 'Twin Room', 2, 'r4.jpg'),
+	(5, 1, 90, '150', 'Single Room', 3, 'r1.jpg'),
+	(6, 1, 100, '151', 'Deluxe Room', 3, 'r2.jpg'),
+	(7, 1, 200, '119', 'Luxury Room', 4, 'r3.jpg'),
+	(8, 1, 150, '118', 'Twin Room', 4, 'r4.jpg');
