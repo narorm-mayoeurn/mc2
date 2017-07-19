@@ -32,8 +32,8 @@ public class BookingController {
         return "room-list";
     }
 
-    @RequestMapping("/booking/{id}")
-    public String bookingFormView(Model model, @PathVariable Integer id) {
+    @RequestMapping("/booking/{roomId}")
+    public String bookingFormView(Model model, @PathVariable Integer roomId) {
 
         Accommodation accommodation = new Accommodation();
         accommodation.setId(1L);
@@ -56,7 +56,7 @@ public class BookingController {
         accommodation.setAddresses(Arrays.asList(address));
         accommodation.setRooms(Arrays.asList(room));
 
-        model.addAttribute("id", 1);
+        model.addAttribute("roomId", roomId);
 
         model.addAttribute("accommodation", accommodation);
 
@@ -64,8 +64,8 @@ public class BookingController {
     }
 
 
-    @RequestMapping(value = "/booking/{id}", method = RequestMethod.POST)
-    public String booking(Model model, @PathVariable Integer id, @ModelAttribute("booking") Booking booking, BindingResult result) {
+    @RequestMapping(value = "/booking/{roomId}", method = RequestMethod.POST)
+    public String booking(Model model, @ModelAttribute("booking") Booking booking, BindingResult result) {
         Accommodation accommodation = new Accommodation();
         accommodation.setId(1L);
         accommodation.setEmail("abc@gmail.com");
@@ -124,8 +124,10 @@ public class BookingController {
         }
 
         booking.setBookingDate(new Date());
-        booking.setId(null);
         bookingService.save(booking);
+
+
+        model.addAttribute("accommodation", accommodation);
 
         return "booking-form";
     }

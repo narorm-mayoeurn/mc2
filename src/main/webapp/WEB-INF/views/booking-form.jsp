@@ -28,7 +28,7 @@
             <div class="contact-agileits bg-blue">
                 <h4>Booking Form</h4>
 
-                <form action="<c:url value="/booking/${id}" />" name="booking" id="booking" method="post">
+                <form action="<c:url value="/booking/${roomId}" />" name="booking" id="booking" method="post">
 
                     <div class="control-group form-group">
                         <div class="controls">
