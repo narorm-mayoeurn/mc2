@@ -30,7 +30,7 @@ public class LoginController {
 			return "error";
 		}
 		model.addAttribute("user", userName);
-		return "redirect:/booking-form";
+		return "success";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

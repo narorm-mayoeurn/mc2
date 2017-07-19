@@ -98,12 +98,6 @@
 								<p class="help-block"></p>
 							</div>
 						</div>
-			  	<c:if test="${not empty error}">
-					<div>
-						Bad credentials!
-					</div>
-				</c:if>
-
 						<div id="success"></div>
 						<!-- For success/fail messages -->
 						<button type="button" class="btn btn-primary" id="btLogin">Submit</button>
@@ -166,8 +160,9 @@
                     userName: $('#userName').val(),
                     password: $('#password').val()
                 },
-                success: function () {
-                    $('#success').text('success');
+                success: function (data) {
+                	if (data=="error") $('#success').text('Bad credentials! Please, check your username and password!');
+                	else document.location='<c:url value="/accommodations/all" />';
                 },
 				error: function(r) {
 					console.log(r);
