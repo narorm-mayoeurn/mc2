@@ -3,6 +3,7 @@ package edu.mum.ea.service;
 import java.util.List;
 
 import edu.mum.ea.domain.Accommodation;
+import edu.mum.ea.domain.Room;
 
 public interface AccommodationService {
 
@@ -17,4 +18,6 @@ public interface AccommodationService {
 	public Accommodation findById(Long id);
 
 	public void delete(Long id);
+
+	List<Room> getRooms(Long accommodationId, boolean isAvailable);
 }

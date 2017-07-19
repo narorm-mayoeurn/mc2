@@ -2,6 +2,8 @@ package edu.mum.ea.service.impl;
 
 import java.util.List;
 
+import edu.mum.ea.dao.RoomDao;
+import edu.mum.ea.domain.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class AccommodationServiceImpl implements edu.mum.ea.service.Accommodatio
 
 	@Autowired
 	private AccommodationDao accommodationDao;
+
+	@Autowired
+	private RoomDao roomDao;
 
 	public void save(Accommodation accommodation) {
 		accommodationDao.save(accommodation);
@@ -40,5 +45,10 @@ public class AccommodationServiceImpl implements edu.mum.ea.service.Accommodatio
 
 	public void delete(Long id) {
 		accommodationDao.delete(id);
+	}
+
+	@Override
+	public List<Room> getRooms(Long accommodationId, boolean isAvailable) {
+		return roomDao.findRooms(accommodationId, isAvailable);
 	}
 }

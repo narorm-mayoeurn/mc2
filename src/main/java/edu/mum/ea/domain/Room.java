@@ -3,6 +3,7 @@ package edu.mum.ea.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import edu.mum.ea.domain.Accommodation;
@@ -39,6 +40,7 @@ public class Room implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "accommodation_id")
+	@JsonIgnoreProperties(value = "rooms")
 	private Accommodation accommodation;
 
 	public Long getId() {
