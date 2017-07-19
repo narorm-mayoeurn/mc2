@@ -38,7 +38,12 @@
 						<spring:message code="room.form.type.label" />
 					</label>
 					<div class="col-lg-10">
-						<form:input id="type" path="type" type="text" class="form:input-large" />
+						<form:select path="type">
+							<form:option value="Single Room">Single Room</form:option>
+							<form:option value="Deluxe Room">Deluxe Room</form:option>
+							<form:option value="Twin Room">Twin Room</form:option>
+							<form:option value="Luxury Room">Luxury Room</form:option>
+						</form:select>			
 						<form:errors path="type" cssClass="text-danger" />
 					</div>
 				</div>
@@ -58,7 +63,7 @@
 						<spring:message code="room.form.isAvailable.label" />
 					</label>
 					<div class="col-lg-10">
-						<form:checkbox path="isAvailable" value="isAvailable"/>
+						<form:checkbox path="isAvailable" />
 						<form:errors path="isAvailable" cssClass="text-danger" />
 					</div>
 				</div>
