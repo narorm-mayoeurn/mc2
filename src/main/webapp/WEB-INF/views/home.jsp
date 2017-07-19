@@ -77,13 +77,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<%--<h4>MC2 <span>BOOKING</span></h4>--%>
-
 				<h4>Log In</h4>
-
-
 				<div class="contact-agileits">
-					<%--<p class="contact-agile2">Sign Up For Our News Letters</p>--%>
 					<form action="<c:url value='/postLogin'/>"
 						method="post" name="sentMessage" id="contactForm" novalidate>
 						<div class="control-group form-group">
@@ -103,6 +98,11 @@
 								<p class="help-block"></p>
 							</div>
 						</div>
+			  	<c:if test="${not empty error}">
+					<div>
+						Bad credentials!
+					</div>
+				</c:if>
 
 						<div id="success"></div>
 						<!-- For success/fail messages -->
