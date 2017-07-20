@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +30,13 @@ public class LoginController {
 			Authentication req = new UsernamePasswordAuthenticationToken(userName, password);
 			Authentication res = authenticationManager.authenticate(req);
 			SecurityContextHolder.getContext().setAuthentication(res);
-			System.out.println(SecurityContextHolder.getContext().getAuthentication().toString());
+			for (GrantedAuthority authority: res.getAuthorities())
+				if (authority.getAuthority().equals("ROLE_ADMIN")) return "admin";
+			return "normal";
 		} catch (AuthenticationException e) {
-			model.addAttribute("error", "true");
+			SecurityContextHolder.getContext().setAuthentication(null);
 			return "error";
 		}
-		model.addAttribute("user", userName);
-		return "success";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

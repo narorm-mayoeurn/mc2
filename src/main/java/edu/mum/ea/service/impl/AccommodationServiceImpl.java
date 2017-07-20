@@ -30,7 +30,7 @@ public class AccommodationServiceImpl implements edu.mum.ea.service.Accommodatio
 		accommodationDao.update(accommodation);
 	}
 
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public List<Accommodation> findAll() {
 		return (List<Accommodation>) accommodationDao.findAll();
 	}

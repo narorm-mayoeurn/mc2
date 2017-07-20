@@ -161,8 +161,11 @@
                     password: $('#password').val()
                 },
                 success: function (data) {
-                	if (data=="error") $('#success').text('Bad credentials! Please, check your username and password!');
-                	else document.location='<c:url value="/accommodations/all" />';
+                	switch (data) {
+                	case "error": $('#success').text('Bad credentials! Please, check your username and password!'); break;
+                	case "admin": document.location='<c:url value="/accommodations/all" />'; break;
+                	case "normal": document.location='<c:url value="/accommodation/list" />'; break;
+                	}
                 },
 				error: function(r) {
 					console.log(r);
