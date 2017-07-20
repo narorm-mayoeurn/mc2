@@ -5,18 +5,19 @@
 
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="contact-agileits">
-                <h4>${accommodation.name}</h4>
+                <h4>${room.accommodation.name}</h4>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <img src="<c:url value="/resource/images/${accommodation.rooms[0].image}" />" style="width:100%;" />
+                        <img src="<c:url value="/resource/images/${room.image}" />" style="width:100%;" />
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <p style="color:#fff;">
-                            Price: <span>$</span> 150<br/>
-                            Room Number: 199
-                            Address: 100N, Fairfield, IA
+                            Price: <span>$</span> ${room.price}<br/>
+                            Room Number: ${room.roomNumber}
+                            Address: ${room.accommodation.addresses[0].street}, ${room.accommodation.addresses[0].city}, ${room.accommodation.addresses[0].state}
+
                         </p>
                     </div>
                 </div>

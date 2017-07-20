@@ -118,12 +118,12 @@
 		<form action="<c:url value="/accommodation/list" />" method="get">
 			<div class="fields-w3ls form-left-agileits-w3layouts ">
 				<p>Room Type</p>
-				<select class="form-control">
-					<option>Select a Room</option>
-					<option>Luxury Room</option>
-					<option>Deluxe Room</option>
-					<option>Single Room</option>
-					<option>Double Room</option>
+				<select class="form-control" name="roomType" id="roomType">
+					<option value="">Select a Room</option>
+					<option value="Luxury Room">Luxury Room</option>
+					<option value="Deluxe Room">Deluxe Room</option>
+					<option value="Single Room">Single Room</option>
+					<option value="Double Room">Double Room</option>
 				</select>
 			</div>
 			<div class="fields-w3ls form-date-w3-agileits">

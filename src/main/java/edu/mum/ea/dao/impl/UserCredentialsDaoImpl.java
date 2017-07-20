@@ -23,4 +23,13 @@ public class UserCredentialsDaoImpl extends GenericDaoImpl<UserCredentials> impl
 
 	}
 
+
+	public UserCredentials findByUsername(String username) {
+
+		Query query = entityManager
+				.createQuery("select m from Authentication m  where m.userName =:userName");
+		return (UserCredentials) query.setParameter("userName", username)
+				.getSingleResult();
+
+	}
 }
