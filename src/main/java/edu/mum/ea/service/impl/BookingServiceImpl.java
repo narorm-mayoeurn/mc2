@@ -20,8 +20,7 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingDao bookingDao;
 
-    @Autowired
-    private RabbitTemplate directTemplate;
+
 
 
 
@@ -35,7 +34,7 @@ public class BookingServiceImpl implements BookingService {
 
 
 
-    public void publish(User user) {
-        directTemplate.convertAndSend("booking.key", user);
+    public void publish(RabbitTemplate rabbitTemplate, User user) {
+        rabbitTemplate.convertAndSend("booking.key", user);
     }
 }

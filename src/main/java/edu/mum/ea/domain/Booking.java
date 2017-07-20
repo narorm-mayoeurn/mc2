@@ -1,6 +1,7 @@
 package edu.mum.ea.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -24,10 +25,12 @@ public class Booking implements Serializable {
     @JoinColumn(name = "user_id")
     private User bookBy;
 
+    @Future
     @Temporal(TemporalType.DATE)
     @Column(name = "start_date", nullable = false)
     private Date startDate;
 
+    @Future
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date", nullable = false)
     private Date endDate;

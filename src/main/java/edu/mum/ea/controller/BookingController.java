@@ -34,7 +34,8 @@ public class BookingController {
     @Autowired
     private UserCredentialsService userCredentialsService;
 
-
+    @Autowired
+    private RabbitTemplate directTemplate;
 
 
 
@@ -102,7 +103,7 @@ public class BookingController {
             bookingService.save(booking);
 
             if(room.getPrice() >= 100) {
-                bookingService.publish(currentUser);
+                bookingService.publish(directTemplate, currentUser);
             }
         } catch(Exception e) {
             e.printStackTrace();
