@@ -21,6 +21,9 @@ public class BookingServiceImpl implements BookingService {
     private BookingDao bookingDao;
 
 
+
+
+
     public Booking findById(Long id) {
         return bookingDao.findOne(id);
     }
@@ -30,7 +33,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
-    @Override
+
     public void publish(RabbitTemplate rabbitTemplate, User user) {
         rabbitTemplate.convertAndSend("booking.key", user);
     }
