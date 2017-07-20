@@ -1,12 +1,17 @@
 INSERT INTO `authentication` (`username`, `password`, `enabled`)
 VALUES
 	('jack', 'jack', true),
-	('jame', 'jame', true);
+	('user', 'user', true);
 INSERT INTO `users` (`email`, `first_name`, `last_name`, `version`, `username`)
-VALUES ('jack@mc2.org', 'Jack', 'Jon', 1, 'jack');
+VALUES
+	('jack@mc2.org', 'Jack', 'Jon', 1, 'jack'),
+	('user@mc2.org', 'James', 'Murray', 1, 'user');
 
 INSERT INTO `authority` (`authority`, `username`)
-VALUES ('ROLE_ADMIN', 'jack'),('ROLE_USER', 'jack');
+VALUES
+	('ROLE_ADMIN', 'jack'),
+	('ROLE_USER', 'user');
+	
 
 INSERT INTO `accommodations` (`id`, `email`, `image`, `logo`, `name`, `phone`, `type`)
 VALUES
