@@ -59,22 +59,30 @@ public class BookingController {
 
         User user = getCurrentUser();
 
-        List<Room> rooms = roomService.findAllAvailable(roomType, start, end);
-        model.addAttribute("rooms", rooms);
-        model.addAttribute("isLogged", user == null ? false : true);
+        try {
+            List<Room> rooms = roomService.findAllAvailable(roomType, start, end);
+            model.addAttribute("rooms", rooms);
+            model.addAttribute("isLogged", user == null ? false : true);
+            return "room-list";
+        } catch(Exception e) {
+            return "home";
+        }
 
-        return "room-list";
     }
 
     @RequestMapping("/booking/{roomId}")
     public String bookingFormView(Model model, @PathVariable Long roomId) {
 
-        Room room = roomService.findById(roomId);
+        try {
+            Room room = roomService.findById(roomId);
 
-        model.addAttribute("roomId", roomId);
-        model.addAttribute("room", room);
+            model.addAttribute("roomId", roomId);
+            model.addAttribute("room", room);
 
-        return "booking-form";
+            return "booking-form";
+        } catch(Exception e) {
+            return "home";
+        }
     }
 
 
@@ -87,8 +95,6 @@ public class BookingController {
 
         BookingDetail bookingDetail = new BookingDetail();
         bookingDetail.setRoom(room);
-
-
 
         booking.setBookBy(currentUser);
         booking.setBookingDetails(Arrays.asList(bookingDetail));
@@ -105,9 +111,14 @@ public class BookingController {
             if(room.getPrice() >= 100) {
                 bookingService.publish(directTemplate, currentUser);
             }
+
+            model.addAttribute("message", "A hotel room has been booked.");
         } catch(Exception e) {
+
+            model.addAttribute("message", "Error booking process.");
             e.printStackTrace();
         }
+
 
         model.addAttribute("room", room);
 

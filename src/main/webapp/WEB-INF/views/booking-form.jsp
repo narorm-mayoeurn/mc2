@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div id="success"></div>
+                    <div id="success" style="color:#fff;"><c:if test="${message != null}">${message}</c:if></div>
                     <!-- For success/fail messages -->
                     <button type="submit" class="btn btn-primary">Book</button>
 

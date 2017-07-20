@@ -20,9 +20,7 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingDao bookingDao;
 
-
-
-
+    
 
     public Booking findById(Long id) {
         return bookingDao.findOne(id);
