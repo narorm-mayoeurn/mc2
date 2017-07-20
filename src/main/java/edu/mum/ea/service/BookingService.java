@@ -12,5 +12,5 @@ public interface BookingService {
     public Booking findById(Long id);
     public void save(Booking booking);
 
-    public void publish(RabbitTemplate rabbitTemplate, User user);
+    public void publish(User user);
 }

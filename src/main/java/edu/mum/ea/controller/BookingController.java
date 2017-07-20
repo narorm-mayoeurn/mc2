@@ -5,6 +5,7 @@ import edu.mum.ea.service.BookingService;
 import edu.mum.ea.service.RoomService;
 import edu.mum.ea.service.UserCredentialsService;
 import edu.mum.ea.service.UserService;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +33,8 @@ public class BookingController {
 
     @Autowired
     private UserCredentialsService userCredentialsService;
+
+
 
 
 
@@ -65,9 +68,7 @@ public class BookingController {
     @RequestMapping("/booking/{roomId}")
     public String bookingFormView(Model model, @PathVariable Long roomId) {
 
-
         Room room = roomService.findById(roomId);
-
 
         model.addAttribute("roomId", roomId);
         model.addAttribute("room", room);
@@ -81,14 +82,14 @@ public class BookingController {
 
 
         Room room = roomService.findById(roomId);
-
+        User currentUser = getCurrentUser();
 
         BookingDetail bookingDetail = new BookingDetail();
         bookingDetail.setRoom(room);
 
 
 
-        booking.setBookBy(getCurrentUser());
+        booking.setBookBy(currentUser);
         booking.setBookingDetails(Arrays.asList(bookingDetail));
 
 
@@ -99,6 +100,10 @@ public class BookingController {
         try {
             booking.setBookingDate(new Date());
             bookingService.save(booking);
+
+            if(room.getPrice() >= 100) {
+                bookingService.publish(currentUser);
+            }
         } catch(Exception e) {
             e.printStackTrace();
         }
