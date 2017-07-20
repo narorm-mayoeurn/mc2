@@ -69,7 +69,7 @@
                         </div>
                         <div class="price-selet">
                             <h3><span>$</span>${room.price}</h3>
-                            <a href="<c:url value="/booking/${room.id}" />" class="scroll" >Book Now</a>
+                            <a class="book" href="<c:url value="/booking/${room.id}" />" class="scroll" >Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,93 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <!-- Modal1 -->
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Log In</h4>
+                <div class="contact-agileits">
+                    <form action="<c:url value='/postLogin'/>"
+                          method="post" name="sentMessage" id="contactForm" novalidate>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label class="contact-p1">Username:</label> <input type="text"
+                                                                                   class="form-control" name="userName" id="userName" required
+                                                                                   data-validation-required-message="Please enter your username.">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label class="contact-p1">Password:</label> <input
+                                    type="password" class="form-control" name="password"
+                                    id="password" required
+                                    data-validation-required-message="Please enter your password.">
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+                        <div id="success"></div>
+                        <!-- For success/fail messages -->
+                        <button type="button" class="btn btn-primary" id="btLogin">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function() {
+
+        var nextUrl = '';
+
+        $('.book').on('click', function(event) {
+            event.preventDefault();
+
+            nextUrl = $(this).attr('href');
+
+            <c:if test="${isLogged == false}">
+            $('#myModal').modal('show');
+            </c:if>
+
+            <c:choose>
+            <c:when test="${isLogged == false}">
+                $('#myModal').modal('show');
+            </c:when>
+            <c:otherwise>
+                window.location = nextUrl;
+            </c:otherwise>
+            </c:choose>
+
+        });
+
+        $('#btLogin').on('click', function() {
+            $.ajax({
+                method: 'POST',
+                url: '<c:url value="/postLogin" />',
+                data: {
+                    userName: $('#userName').val(),
+                    password: $('#password').val()
+                },
+                success: function (data) {
+                    if (data=="error") $('#success').text('Bad credentials! Please, check your username and password!');
+                    else document.location=nextUrl;
+                },
+                error: function(r) {
+                    console.log(r);
+                }
+            });
+        });
+    });
+</script>
 
 
 

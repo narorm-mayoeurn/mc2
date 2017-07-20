@@ -38,4 +38,9 @@ public class UserCredentialsServiceImpl implements UserCredentialsService {
 	
 	}
 
+
+	public UserCredentials findByUsername(String username) {
+		return userCredentialsDao.findByUsername(username);
+	}
+
 }

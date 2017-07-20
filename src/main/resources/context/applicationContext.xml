@@ -30,6 +30,7 @@
 
     <import resource="classpath:context/security-context.xml"/>
     <import resource="classpath:context/DispatcherServlet-context.xml"/>
+    <import resource="classpath:context/amqp-context.xml"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />

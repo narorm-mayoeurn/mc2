@@ -10,4 +10,5 @@ public interface UserCredentialsService {
 	public UserCredentials update(UserCredentials userCredentials);
 	public List<UserCredentials> findAll();
 	public UserCredentials findByUserNamePassword(String userName, String password);
+	public UserCredentials findByUsername(String username);
  }

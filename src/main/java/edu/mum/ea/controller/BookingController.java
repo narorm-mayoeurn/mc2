@@ -3,7 +3,11 @@ package edu.mum.ea.controller;
 import edu.mum.ea.domain.*;
 import edu.mum.ea.service.BookingService;
 import edu.mum.ea.service.RoomService;
+import edu.mum.ea.service.UserCredentialsService;
+import edu.mum.ea.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,26 +30,34 @@ public class BookingController {
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private UserCredentialsService userCredentialsService;
+
 
 
     @RequestMapping("/accommodation/list")
-    public String roomListView(Model model, @RequestParam("roomType") String roomType, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+    public String roomListView(
+            Model model,
+            @RequestParam(value = "roomType", required = false) String roomType,
+            @RequestParam(value = "startDate", required = false) String startDate,
+            @RequestParam(value = "endDate", required = false) String endDate) {
 
         Date start = null;
         Date end = null;
 
-        if(startDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        if(startDate != null && startDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
             start = new Date(startDate);
         }
 
-        if(endDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
+        if(endDate != null && endDate.matches("\\d{2}/\\d{2}/\\d{4}")) {
              end = new Date(endDate);
         }
 
+        User user = getCurrentUser();
 
         List<Room> rooms = roomService.findAllAvailable(roomType, start, end);
-
         model.addAttribute("rooms", rooms);
+        model.addAttribute("isLogged", user == null ? false : true);
 
         return "room-list";
     }
@@ -57,29 +69,7 @@ public class BookingController {
         Room room = roomService.findById(roomId);
 
 
-//        Accommodation accommodation = new Accommodation();
-//        accommodation.setId(1L);
-//        accommodation.setEmail("abc@gmail.com");
-//        accommodation.setName("Ace Hotel");
-//
-//        Address address = new Address();
-//        address.setCity("Fairfield");
-//        address.setId(1L);
-//        address.setState("IA");
-//        address.setStreet("1000N");
-//
-//        Room room = new Room();
-//        room.setId(1L);
-//        room.setAvailable(true);
-//        room.setRoomNumber("199");
-//        room.setAccommodation(accommodation);
-//        room.setImage("r1.jpg");
-//
-//        accommodation.setAddresses(Arrays.asList(address));
-//        accommodation.setRooms(Arrays.asList(room));
-
         model.addAttribute("roomId", roomId);
-
         model.addAttribute("room", room);
 
         return "booking-form";
@@ -87,70 +77,45 @@ public class BookingController {
 
 
     @RequestMapping(value = "/booking/{roomId}", method = RequestMethod.POST)
-    public String booking(Model model, @ModelAttribute("booking") Booking booking, BindingResult result) {
-        Accommodation accommodation = new Accommodation();
-        accommodation.setId(1L);
-        accommodation.setEmail("abc@gmail.com");
-        accommodation.setName("Ace Hotel");
+    public String booking(Model model, @PathVariable Long roomId, @ModelAttribute("booking") Booking booking, BindingResult result) {
 
-        Address address = new Address();
-        address.setCity("Fairfield");
-        address.setId(1L);
-        address.setState("IA");
-        address.setStreet("1000N");
 
-        Room room = new Room();
-        room.setId(1L);
-        room.setAvailable(true);
-        room.setRoomNumber("199");
-        room.setAccommodation(accommodation);
-        room.setImage("r1.jpg");
-
-        accommodation.setAddresses(Arrays.asList(address));
-        accommodation.setRooms(Arrays.asList(room));
+        Room room = roomService.findById(roomId);
 
 
         BookingDetail bookingDetail = new BookingDetail();
         bookingDetail.setRoom(room);
 
 
-        User user = new User();
-        user.setId(1L);
-        user.setEmail("jack@mc2.org");
-        user.setFirstName("Jack");
-        user.setLastName("Jon");
-        user.setVersion(1L);
 
-
-
-        UserCredentials userCredentials = new UserCredentials();
-
-        userCredentials.setUsername("jack");
-        userCredentials.setPassword("jack");
-
-
-        user.setUserCredential(userCredentials);
-
-
-
-        booking.setBookBy(user);
-
-
-
-
+        booking.setBookBy(getCurrentUser());
         booking.setBookingDetails(Arrays.asList(bookingDetail));
 
 
         if(result.hasErrors()) {
-
+            model.addAttribute("errorMessage", "Cannot processing booking.");
         }
 
-        booking.setBookingDate(new Date());
-        bookingService.save(booking);
+        try {
+            booking.setBookingDate(new Date());
+            bookingService.save(booking);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
-
-        model.addAttribute("accommodation", accommodation);
+        model.addAttribute("room", room);
 
         return "booking-form";
+    }
+
+    private User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication == null) return null;
+        UserCredentials credentials = userCredentialsService.findByUsername(authentication.getName());
+
+        User user = null;
+        if(credentials != null) user = credentials.getUser();
+        return user;
     }
 }

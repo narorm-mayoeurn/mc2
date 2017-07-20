@@ -30,14 +30,14 @@ public class RoomDaoImpl extends GenericDaoImpl<Room> implements RoomDao {
 	public List<Room> findAllAvailable(String roomType, Date startDate, Date endDate) {
 		String sql = "select distinct r from rooms r, accommodations a where r.isAvailable = :available";
 
-		if(!roomType.isEmpty()) {
+		if(roomType != null && !roomType.isEmpty()) {
 			sql += " and r.type = :roomType";
 		}
 
 		Query query = super.entityManager.createQuery(sql);
 		query.setParameter("available", true);
 
-		if(!roomType.isEmpty()) {
+		if(roomType != null && !roomType.isEmpty()) {
 			query.setParameter("roomType", roomType);
 		}
 
