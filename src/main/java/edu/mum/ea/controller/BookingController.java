@@ -101,22 +101,24 @@ public class BookingController {
 
 
         if(result.hasErrors()) {
-            model.addAttribute("errorMessage", "Cannot processing booking.");
+            model.addAttribute("message", "Error booking process.");
         }
 
-        try {
-            booking.setBookingDate(new Date());
-            bookingService.save(booking);
+        else {
+            try {
+                booking.setBookingDate(new Date());
+                bookingService.save(booking);
 
-            if(room.getPrice() >= 100) {
-                bookingService.publish(directTemplate, currentUser);
+                if (room.getPrice() >= 100) {
+                    bookingService.publish(directTemplate, currentUser);
+                }
+
+                model.addAttribute("message", "A hotel room has been booked.");
+            } catch (Exception e) {
+
+                model.addAttribute("message", "Error booking process.");
+                e.printStackTrace();
             }
-
-            model.addAttribute("message", "A hotel room has been booked.");
-        } catch(Exception e) {
-
-            model.addAttribute("message", "Error booking process.");
-            e.printStackTrace();
         }
 
 
